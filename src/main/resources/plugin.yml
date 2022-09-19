@@ -1,0 +1,13 @@
+name: CoordsPlugin
+version: '${project.version}'
+main: coordsplugin.coordsplugin.CoordsPlugin
+api-version: 1.19
+authors: [ C0reB ]
+commands:
+  tässä:
+    description: Listaa tallennetut sijainnit.
+    usage: /<command> [message]
+  missä:
+    description: Näkee listan tallennetuista sijanneista.
+    usage: /<command>
+
