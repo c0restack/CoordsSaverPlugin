@@ -34,7 +34,7 @@ public final class CoordsPlugin extends JavaPlugin {
                 Player p =(Player) sender;
                 BufferedReader br = null;
                 try {
-                    br = new BufferedReader(new FileReader("C:/Users/eeron/Desktop/papertestserver/plugins/logi.txt"));
+                    br = new BufferedReader(new FileReader("/home/pi/minecraft/plugins/logi.txt"));
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -100,7 +100,7 @@ public final class CoordsPlugin extends JavaPlugin {
     }
     private void logaa(String tag, String coords, String name) {
         try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/C:/Users//eeron//Desktop//papertestserver//plugins//logi.txt", true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/pi/minecraft/plugins/logi.txt", true)));
             out.println(name + ": " + tag + " @: " + coords);
             out.close();
         } catch (IOException e) {
