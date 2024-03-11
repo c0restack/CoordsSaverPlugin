@@ -1,6 +1,5 @@
-package coordsplugin.coordsplugin;
+package me.patunki.coords;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -9,21 +8,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
-public final class CoordsPlugin extends JavaPlugin {
+public final class Coords extends JavaPlugin {
 
     @Override
     public void onEnable() {
         // Plugin startup logic
     }
+
+    public String logiFile = "coordit.txt";
+
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
@@ -34,7 +29,7 @@ public final class CoordsPlugin extends JavaPlugin {
                 Player p =(Player) sender;
                 BufferedReader br = null;
                 try {
-                    br = new BufferedReader(new FileReader("/home/pi/minecraft/plugins/logi.txt"));
+                    br = new BufferedReader(new FileReader(logiFile));
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -51,7 +46,7 @@ public final class CoordsPlugin extends JavaPlugin {
                     //System.out.println(everything);
                     p.sendMessage(ChatColor.BLUE + everything);
                 } catch (IOException e) {
-                throw new RuntimeException(e);
+                    throw new RuntimeException(e);
                 } finally {
                     try {
                         br.close();
@@ -64,6 +59,15 @@ public final class CoordsPlugin extends JavaPlugin {
             }
 
         }
+
+        if (command.getName().equalsIgnoreCase("apua")){
+            if (sender instanceof Player){
+                Player p =(Player) sender;
+                p.sendMessage(ChatColor.YELLOW + "Commandeilla /tässä <paikka> voi tallentaa kordinaatit ja commandilla /missä näkee tallennetut sijainnit. Tehen ja lisään muita plugineita jahka jaksan t.pale");
+            }
+
+        }
+
         if (command.getName().equalsIgnoreCase("tässä")){
             if (sender instanceof Player){
                 Player p =(Player) sender;
@@ -78,7 +82,7 @@ public final class CoordsPlugin extends JavaPlugin {
                 int yInt = (int)y;
                 int zInt = (int)z;
 
-                String coordsString = String.format("%d,%d,%d",xInt, yInt, zInt);
+                String coordsString = String.format("%d, %d, %d",xInt, yInt, zInt);
 
                 if (args.length == 0){
                     p.sendMessage(ChatColor.RED + "Pitää laittaa et mikä mesta son siihen kommandin perään: /tässä <mikäpaikka>");
@@ -100,7 +104,7 @@ public final class CoordsPlugin extends JavaPlugin {
     }
     private void logaa(String tag, String coords, String name) {
         try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/pi/minecraft/plugins/logi.txt", true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(logiFile, true)));
             out.println(name + ": " + tag + " @: " + coords);
             out.close();
         } catch (IOException e) {
