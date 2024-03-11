@@ -1,13 +1,17 @@
-name: CoordsPlugin
+name: coords
 version: '${project.version}'
-main: coordsplugin.coordsplugin.CoordsPlugin
-api-version: 1.19
-authors: [ C0reB ]
+main: me.patunki.coords.Coords
+api-version: '1.20'
+
+authors: [ Patunki ]
 commands:
   tässä:
     description: Listaa tallennetut sijainnit.
     usage: /<command> [message]
   missä:
     description: Näkee listan tallennetuista sijanneista.
+    usage: /<command>
+  apua:
+    description: Apua.
     usage: /<command>
 
